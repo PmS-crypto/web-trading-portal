@@ -120,7 +120,7 @@ export function PortfolioWidget({ config, widgetId }: PortfolioWidgetProps) {
                   borderRadius: '8px',
                   color: 'var(--color-text)',
                   padding: '8px 12px',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+                  boxShadow: 'none',
                 }}
                 formatter={(value: number) => formatCurrency(value, 'INR')}
                 labelStyle={{ color: 'var(--color-text-secondary)', fontSize: '12px', fontWeight: '500' }}

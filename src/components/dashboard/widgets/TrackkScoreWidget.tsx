@@ -172,7 +172,7 @@ export function TrackkScoreWidget({ config, widgetId }: TrackkScoreWidgetProps) 
               strokeLinecap="round"
               className="transition-all duration-700 ease-out"
               style={{ 
-                filter: 'drop-shadow(0 0 4px var(--color-accent))',
+                filter: 'none',
                 opacity: 1,
               }}
             />
@@ -180,7 +180,7 @@ export function TrackkScoreWidget({ config, widgetId }: TrackkScoreWidgetProps) 
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
               <div className={cn('text-2xl sm:text-3xl font-bold', scoreColor)} style={{ 
-                textShadow: '0 0 8px currentColor',
+                textShadow: 'none',
                 color: 'var(--color-accent)',
               }}>{score}</div>
               <div className="text-xs mt-0.5" style={{ color: 'var(--color-text-secondary)' }}>/10</div>
