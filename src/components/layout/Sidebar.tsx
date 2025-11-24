@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { useWatchlistStore } from '@/store/watchlistStore';
 import { useNavigationStore } from '@/store/navigationStore';
+import { useThemeStore } from '@/store/themeStore';
 import { cn } from '@/lib/utils';
 
 const menuItems = [
@@ -34,6 +35,8 @@ export function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { currentView, setView } = useNavigationStore();
   const { watchlists } = useWatchlistStore();
+  const { currentTheme } = useThemeStore();
+  const isDark = currentTheme.id === 'dark';
 
   return (
     <aside
@@ -93,22 +96,42 @@ export function Sidebar() {
                   className={cn(
                     'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors',
                     isActive
-                      ? 'bg-accent/20 text-accent border border-accent/30'
+                      ? 'border'
                       : 'text-text-secondary hover:bg-white/5 hover:text-text border border-transparent'
                   )}
                   style={{
-                    backgroundColor: isActive ? 'rgba(0, 82, 255, 0.15)' : 'transparent',
-                    color: isActive ? 'var(--color-accent)' : 'var(--color-text-secondary)',
-                    borderColor: isActive ? 'rgba(0, 82, 255, 0.3)' : 'transparent',
+                    backgroundColor: isActive 
+                      ? (isDark 
+                          ? 'rgba(0, 82, 255, 0.3)' 
+                          : 'rgba(37, 99, 235, 0.15)')
+                      : 'transparent',
+                    color: isActive 
+                      ? (isDark
+                          ? '#ffffff'
+                          : 'var(--color-accent)')
+                      : 'var(--color-text-secondary)',
+                    borderColor: isActive 
+                      ? (isDark
+                          ? 'rgba(0, 82, 255, 0.5)'
+                          : 'rgba(37, 99, 235, 0.3)')
+                      : 'transparent',
                   }}
                   title={isCollapsed ? item.label : undefined}
                 >
                   <Icon className="w-5 h-5 flex-shrink-0" style={{ 
-                    color: isActive ? 'var(--color-accent)' : 'var(--color-text-secondary)' 
+                    color: isActive 
+                      ? (isDark
+                          ? '#ffffff'
+                          : 'var(--color-accent)')
+                      : 'var(--color-text-secondary)' 
                   }} />
                   {!isCollapsed && (
                     <span className="text-sm font-medium" style={{ 
-                      color: isActive ? 'var(--color-accent)' : 'var(--color-text-secondary)' 
+                      color: isActive 
+                        ? (isDark
+                            ? '#ffffff'
+                            : 'var(--color-accent)')
+                        : 'var(--color-text-secondary)' 
                     }}>{item.label}</span>
                   )}
                 </button>

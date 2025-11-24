@@ -14,3 +14,4 @@ export const useWidgetExpansionStore = create<WidgetExpansionState>((set, get) =
   isExpanded: (widgetId) => get().expandedWidgetId === widgetId,
 }));
 
+

@@ -33,10 +33,10 @@ interface ThemeState {
 }
 
 export const useThemeStore = create<ThemeState>((set) => ({
-  currentTheme: themes[0],
+  currentTheme: themes[1], // Light mode as default
   themes,
   setTheme: (themeId) => {
-    const theme = themes.find(t => t.id === themeId) || themes[0];
+    const theme = themes.find(t => t.id === themeId) || themes[1]; // Light mode as fallback
     set({ currentTheme: theme });
     // Apply theme to document
     if (typeof document !== 'undefined') {

@@ -14,3 +14,4 @@ export const useWidgetPaletteStore = create<WidgetPaletteState>((set) => ({
   toggle: () => set((state) => ({ isOpen: !state.isOpen })),
 }));
 
+
