@@ -5,6 +5,7 @@ import { Dashboard } from '@/components/dashboard/Dashboard';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { TopBar } from '@/components/layout/TopBar';
 import { AICoPilot } from '@/components/ai/AICoPilot';
+import { WidgetPalette } from '@/components/dashboard/WidgetPalette';
 import { useThemeStore } from '@/store/themeStore';
 import { useNavigationStore } from '@/store/navigationStore';
 import { KeyboardShortcuts } from '@/components/common/KeyboardShortcuts';
@@ -86,6 +87,8 @@ export default function Home() {
         </main>
       </div>
       <AICoPilot />
+      {/* Widget Palette - Always visible in all sections */}
+      <WidgetPalette />
     </div>
   );
 }

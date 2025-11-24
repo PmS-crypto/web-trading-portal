@@ -7,7 +7,8 @@ import {
   Star, 
   Newspaper, 
   List,
-  X
+  X,
+  Plus
 } from 'lucide-react';
 import { useDashboardStore } from '@/store/dashboardStore';
 import { useWidgetPaletteStore } from '@/store/widgetPaletteStore';
@@ -51,7 +52,7 @@ export function WidgetPalette() {
         style={{ backgroundColor: 'var(--color-accent)' }}
         title="Add Widget"
       >
-        <BarChart3 className="w-6 h-6" />
+        <Plus className="w-7 h-7" strokeWidth={2.5} />
       </button>
     );
   }

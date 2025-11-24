@@ -21,8 +21,6 @@ export function Dashboard() {
         isDragging && 'cursor-grabbing'
       )}
     >
-      {/* Widget Palette - Floating */}
-      <WidgetPalette />
 
       {/* Grid Layout Container */}
       <GridLayout>
