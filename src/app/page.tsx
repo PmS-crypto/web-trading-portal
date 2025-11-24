@@ -6,6 +6,7 @@ import { Sidebar } from '@/components/layout/Sidebar';
 import { TopBar } from '@/components/layout/TopBar';
 import { AICoPilot } from '@/components/ai/AICoPilot';
 import { WidgetPalette } from '@/components/dashboard/WidgetPalette';
+import { LayoutPresetSwitcher } from '@/components/dashboard/LayoutPresetSwitcher';
 import { useThemeStore } from '@/store/themeStore';
 import { useNavigationStore } from '@/store/navigationStore';
 import { KeyboardShortcuts } from '@/components/common/KeyboardShortcuts';
@@ -89,6 +90,8 @@ export default function Home() {
       <AICoPilot />
       {/* Widget Palette - Always visible in all sections */}
       <WidgetPalette />
+      {/* Layout Preset Switcher - Only on dashboard */}
+      {currentView === 'dashboard' && <LayoutPresetSwitcher />}
     </div>
   );
 }

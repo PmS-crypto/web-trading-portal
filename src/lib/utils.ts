@@ -33,15 +33,15 @@ export function formatPercent(value: number, decimals: number = 2): string {
 }
 
 export function getColorForChange(change: number): string {
-  if (change > 0) return 'text-success';
-  if (change < 0) return 'text-danger';
-  return 'text-gray-400';
+  if (change > 0) return 'text-accent';
+  if (change < 0) return 'text-red-500';
+  return 'text-text-secondary';
 }
 
 export function getTrackkScoreColor(score: number): string {
-  if (score >= 8) return 'text-success';
-  if (score >= 6) return 'text-warning';
-  return 'text-danger';
+  if (score >= 8) return 'text-accent';
+  if (score >= 6) return 'text-yellow-500';
+  return 'text-red-500';
 }
 
 export function getTrackkScoreRating(score: number): 'bullish' | 'bearish' | 'neutral' {

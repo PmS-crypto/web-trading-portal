@@ -3,31 +3,31 @@
 import { useEffect, useRef } from 'react';
 import { useDashboardStore } from '@/store/dashboardStore';
 import { useWidgetPaletteStore } from '@/store/widgetPaletteStore';
+import { useWidgetSettingsStore } from '@/store/widgetSettingsStore';
 import { GridLayout } from './GridLayout';
 import { WidgetRenderer } from './WidgetRenderer';
 import { WidgetPalette } from './WidgetPalette';
+import { WidgetSettingsPanel } from './WidgetSettingsPanel';
 import { cn } from '@/lib/utils';
 
 export function Dashboard() {
-  const { widgets, isDragging } = useDashboardStore();
+  const { widgets } = useDashboardStore();
   const { open: openPalette } = useWidgetPaletteStore();
+  const { openWidgetId, closeSettings } = useWidgetSettingsStore();
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  const openWidget = widgets.find(w => w.id === openWidgetId);
 
   return (
     <div
       ref={containerRef}
-      className={cn(
-        'relative w-full h-full overflow-hidden',
-        isDragging && 'cursor-grabbing'
-      )}
+      className="relative w-full h-full overflow-hidden"
     >
-
       {/* Grid Layout Container */}
       <GridLayout>
         {widgets.map((widget) => (
           <div
             key={widget.id}
-            data-grid={widget.position}
             className="widget-container"
           >
             <WidgetRenderer widget={widget} />
@@ -44,7 +44,7 @@ export function Dashboard() {
               Build Your Trading Workspace
             </h3>
             <p className="text-text-secondary mb-6">
-              Drag widgets from the palette to get started
+              Add widgets to get started
             </p>
             <button
               onClick={openPalette}
@@ -56,8 +56,14 @@ export function Dashboard() {
           </div>
         </div>
       )}
+      
+      {/* Widget Settings Panel */}
+      {openWidget && (
+        <WidgetSettingsPanel
+          widget={openWidget}
+          onClose={closeSettings}
+        />
+      )}
     </div>
   );
 }
-
-

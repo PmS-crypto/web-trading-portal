@@ -38,13 +38,18 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        'relative flex flex-col bg-surface border-r border-gray-800/50 transition-all duration-300',
-        isCollapsed ? 'w-16' : 'w-64'
+        'relative flex flex-col border-r transition-all duration-300',
+        isCollapsed ? 'w-16' : 'w-64',
+        'dark:bg-[#1a2332] dark:border-white/10',
+        'light:bg-white light:border-gray-200'
       )}
-      style={{ backgroundColor: 'var(--color-surface)' }}
+      style={{ 
+        backgroundColor: 'var(--color-surface)',
+        borderColor: 'rgba(255,255,255,0.1)'
+      }}
     >
       {/* Logo Section - Contains logo when expanded, toggle button when collapsed */}
-      <div className="p-4 border-b border-gray-800/50 relative">
+      <div className="p-4 border-b relative dark:border-white/10 light:border-gray-200" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
         {isCollapsed ? (
           // Toggle button in logo position when collapsed
           <button
@@ -89,18 +94,22 @@ export function Sidebar() {
                     'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors',
                     isActive
                       ? 'bg-accent/20 text-accent border border-accent/30'
-                      : 'text-text-secondary hover:bg-surface/50 hover:text-text border border-transparent'
+                      : 'text-text-secondary hover:bg-white/5 hover:text-text border border-transparent'
                   )}
                   style={{
-                    backgroundColor: isActive ? 'rgba(24, 144, 255, 0.2)' : 'transparent',
+                    backgroundColor: isActive ? 'rgba(0, 82, 255, 0.15)' : 'transparent',
                     color: isActive ? 'var(--color-accent)' : 'var(--color-text-secondary)',
-                    borderColor: isActive ? 'var(--color-accent)' : 'transparent',
+                    borderColor: isActive ? 'rgba(0, 82, 255, 0.3)' : 'transparent',
                   }}
                   title={isCollapsed ? item.label : undefined}
                 >
-                  <Icon className="w-5 h-5 flex-shrink-0" />
+                  <Icon className="w-5 h-5 flex-shrink-0" style={{ 
+                    color: isActive ? 'var(--color-accent)' : 'var(--color-text-secondary)' 
+                  }} />
                   {!isCollapsed && (
-                    <span className="text-sm font-medium">{item.label}</span>
+                    <span className="text-sm font-medium" style={{ 
+                      color: isActive ? 'var(--color-accent)' : 'var(--color-text-secondary)' 
+                    }}>{item.label}</span>
                   )}
                 </button>
               </li>
@@ -111,19 +120,20 @@ export function Sidebar() {
         {/* Watchlists Section */}
         {!isCollapsed && watchlists.length > 0 && (
           <div className="mt-6">
-            <div className="px-3 py-2 text-xs font-semibold text-text-secondary uppercase tracking-wider">
+            <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-secondary)' }}>
               Watchlists
             </div>
             <ul className="space-y-1">
               {watchlists.map((watchlist) => (
                 <li key={watchlist.id}>
                   <button
-                    className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-text-secondary hover:bg-surface/50 hover:text-text transition-colors"
+                    className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm hover:bg-white/5 transition-colors"
+                    style={{ color: 'var(--color-text-secondary)' }}
                   >
-                    <TrendingUp className="w-4 h-4" />
+                    <TrendingUp className="w-4 h-4" style={{ color: 'var(--color-text-secondary)' }} />
                     <span className="truncate">{watchlist.name}</span>
                     {watchlist.isShared && (
-                      <Users className="w-3 h-3 ml-auto" />
+                      <Users className="w-3 h-3 ml-auto" style={{ color: 'var(--color-text-secondary)' }} />
                     )}
                   </button>
                 </li>
@@ -134,15 +144,15 @@ export function Sidebar() {
       </nav>
 
       {/* User Profile */}
-      <div className="p-4 border-t border-gray-800/50">
+      <div className="p-4 border-t dark:border-white/10 light:border-gray-200" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
         <div className={cn('flex items-center gap-3', isCollapsed && 'justify-center')}>
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-semibold text-sm">
             U
           </div>
           {!isCollapsed && (
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-medium text-text truncate">User</div>
-              <div className="text-xs text-text-secondary">Level 3</div>
+              <div className="text-sm font-medium truncate" style={{ color: 'var(--color-text)' }}>User</div>
+              <div className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>Level 3</div>
             </div>
           )}
         </div>

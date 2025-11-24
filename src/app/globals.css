@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #0f1419;
-  --color-surface: #1a1f2e;
-  --color-accent: #3b82f6;
+  --color-bg: #0a0e27;
+  --color-surface: #1a2332;
+  --color-accent: #0052ff;
   --color-text: #ffffff;
-  --color-text-secondary: #b0b8c1;
+  --color-text-secondary: #a8b8d8;
 }
 
 * {
@@ -35,16 +35,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-surface);
+  background: var(--color-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
+  background: rgba(0, 82, 255, 0.3);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #40a9ff;
+  background: rgba(0, 82, 255, 0.5);
 }
 
 /* Custom Utilities */
@@ -86,6 +86,85 @@ body {
 ::selection {
   background-color: var(--color-accent);
   color: white;
+}
+
+/* Widget Grid Layout - Simple CSS Grid */
+
+/* Widget Container Styling */
+.widget-container {
+  width: 100%;
+  height: 500px;
+  min-height: 400px;
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .widget-container {
+    height: auto;
+    min-height: 400px;
+  }
+}
+
+.widget-wrapper {
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Ensure widget content is properly contained */
+.widget-wrapper > div {
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Ensure Recharts SVG doesn't clip labels */
+.recharts-wrapper {
+  overflow: visible !important;
+}
+
+.recharts-surface {
+  overflow: visible !important;
+}
+
+/* Widget Header Responsive */
+.widget-header {
+  flex-shrink: 0;
+  min-height: 44px;
+}
+
+/* Widget Content Area */
+.widget-content {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure all widget text is properly contained */
+.widget-wrapper * {
+  max-width: 100%;
+}
+
+/* Responsive font sizes for widgets */
+@media (max-width: 640px) {
+  .widget-wrapper {
+    font-size: 0.875rem;
+  }
 }
 
 

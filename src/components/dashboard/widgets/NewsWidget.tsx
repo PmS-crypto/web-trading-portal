@@ -1,9 +1,11 @@
 'use client';
 
-import { GripVertical, Settings, Maximize2, ExternalLink } from 'lucide-react';
+import { Settings, X, ExternalLink } from 'lucide-react';
+import { useDashboardStore } from '@/store/dashboardStore';
 
 interface NewsWidgetProps {
   config: Record<string, any>;
+  widgetId?: string;
 }
 
 // Mock data
@@ -31,48 +33,54 @@ const mockNews = [
   },
 ];
 
-export function NewsWidget({ config }: NewsWidgetProps) {
+export function NewsWidget({ config, widgetId }: NewsWidgetProps) {
+  const { removeWidget } = useDashboardStore();
+  
   return (
-    <div className="h-full w-full bg-surface rounded-xl border border-gray-800/50 flex flex-col overflow-hidden shadow-lg" style={{ 
+    <div className="h-full w-full bg-surface rounded-xl border border-white/5 flex flex-col overflow-hidden" style={{ 
       backgroundColor: 'var(--color-surface)',
-      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
     }}>
       {/* Widget Header */}
-      <div className="flex items-center justify-between p-3 border-b border-gray-800/50 flex-shrink-0">
+      <div className="flex items-center justify-between p-3 border-b border-white/5 flex-shrink-0 widget-header">
         <div className="flex items-center gap-2 min-w-0">
-          <GripVertical className="w-4 h-4 text-text-secondary widget-drag-handle cursor-move flex-shrink-0" />
           <div className="text-sm font-semibold text-text truncate">Market News</div>
         </div>
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <button className="p-1.5 rounded hover:bg-surface/50 transition-colors">
+        <div className="flex items-center gap-1 flex-shrink-0">
+          <button className="p-1.5 rounded hover:bg-white/5 transition-colors cursor-pointer">
             <Settings className="w-4 h-4 text-text-secondary" />
           </button>
-          <button className="p-1.5 rounded hover:bg-surface/50 transition-colors">
-            <Maximize2 className="w-4 h-4 text-text-secondary" />
-          </button>
+          {widgetId && (
+            <button 
+              onClick={() => removeWidget(widgetId)}
+              className="p-1.5 rounded hover:bg-red-500/20 transition-colors cursor-pointer"
+              title="Remove widget"
+            >
+              <X className="w-4 h-4 text-text-secondary hover:text-red-500" />
+            </button>
+          )}
         </div>
       </div>
 
       {/* News Content */}
-      <div className="flex-1 overflow-y-auto min-h-0">
-        <div className="divide-y divide-gray-800">
+      <div className="flex-1 overflow-y-auto min-h-0 overscroll-contain">
+        <div className="divide-y divide-white/5">
           {mockNews.map((news) => (
             <div
               key={news.id}
-              className="p-3 hover:bg-surface/30 transition-colors cursor-pointer"
+              className="p-3 hover:bg-white/5 transition-colors cursor-pointer"
             >
-              <div className="flex items-start justify-between gap-2">
-                <div className="flex-1 min-w-0">
+              <div className="flex items-start justify-between gap-2 min-w-0">
+                <div className="flex-1 min-w-0 overflow-hidden">
                   <div className="text-sm font-medium text-text mb-1 line-clamp-2">
                     {news.title}
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-text-secondary">
-                    <span>{news.source}</span>
+                  <div className="flex items-center gap-2 text-xs text-text-secondary flex-wrap">
+                    <span className="truncate">{news.source}</span>
                     <span>•</span>
-                    <span>{news.time}</span>
+                    <span className="whitespace-nowrap">{news.time}</span>
                   </div>
                 </div>
-                <button className="p-1 rounded hover:bg-surface/50 transition-colors flex-shrink-0">
+                <button className="p-1 rounded hover:bg-white/5 transition-colors flex-shrink-0 cursor-pointer">
                   <ExternalLink className="w-4 h-4 text-text-secondary" />
                 </button>
               </div>
@@ -83,5 +91,3 @@ export function NewsWidget({ config }: NewsWidgetProps) {
     </div>
   );
 }
-
-

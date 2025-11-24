@@ -16,17 +16,17 @@ export function WidgetRenderer({ widget }: WidgetRendererProps) {
   const renderWidget = () => {
     switch (widget.type) {
       case 'chart':
-        return <ChartWidget config={widget.config} />;
+        return <ChartWidget config={widget.config} widgetId={widget.id} />;
       case 'watchlist':
-        return <WatchlistWidget config={widget.config} />;
+        return <WatchlistWidget config={widget.config} widgetId={widget.id} />;
       case 'portfolio':
-        return <PortfolioWidget config={widget.config} />;
+        return <PortfolioWidget config={widget.config} widgetId={widget.id} />;
       case 'score':
-        return <TrackkScoreWidget config={widget.config} />;
+        return <TrackkScoreWidget config={widget.config} widgetId={widget.id} />;
       case 'news':
-        return <NewsWidget config={widget.config} />;
+        return <NewsWidget config={widget.config} widgetId={widget.id} />;
       case 'orderbook':
-        return <OrderBookWidget config={widget.config} />;
+        return <OrderBookWidget config={widget.config} widgetId={widget.id} />;
       default:
         return <div>Unknown widget type</div>;
     }

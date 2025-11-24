@@ -6,11 +6,11 @@ const themes: Theme[] = [
     id: 'dark',
     name: 'Dark Mode',
     colors: {
-      bg: '#0f1419',
-      surface: '#1a1f2e',
-      accent: '#3b82f6',
+      bg: '#0a0e27', // Deep blue-black like Coinbase
+      surface: '#1a2332', // Lighter blue for surfaces (improved visibility)
+      accent: '#0052ff', // Coinbase blue accent
       text: '#ffffff',
-      textSecondary: '#b0b8c1',
+      textSecondary: '#a8b8d8', // Brighter blue-gray for better visibility
     },
   },
   {
