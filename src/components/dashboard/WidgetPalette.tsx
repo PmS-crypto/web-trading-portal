@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { 
   BarChart3, 
   TrendingUp, 
@@ -11,6 +10,7 @@ import {
   X
 } from 'lucide-react';
 import { useDashboardStore } from '@/store/dashboardStore';
+import { useWidgetPaletteStore } from '@/store/widgetPaletteStore';
 import { DashboardWidget } from '@/types';
 
 const widgetTypes = [
@@ -23,7 +23,7 @@ const widgetTypes = [
 ];
 
 export function WidgetPalette() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, open, close } = useWidgetPaletteStore();
   const { addWidget } = useDashboardStore();
 
   const handleAddWidget = (type: DashboardWidget['type']) => {
@@ -40,12 +40,13 @@ export function WidgetPalette() {
       isPinned: false,
     };
     addWidget(newWidget);
+    close();
   };
 
   if (!isOpen) {
     return (
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={open}
         className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-accent text-white shadow-lg hover:bg-accent/90 transition-all hover:scale-110 flex items-center justify-center z-50"
         style={{ backgroundColor: 'var(--color-accent)' }}
         title="Add Widget"
@@ -60,7 +61,7 @@ export function WidgetPalette() {
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-text">Add Widget</h3>
         <button
-          onClick={() => setIsOpen(false)}
+          onClick={close}
           className="p-1 rounded hover:bg-surface/50 transition-colors"
         >
           <X className="w-5 h-5 text-text-secondary" />
@@ -75,7 +76,6 @@ export function WidgetPalette() {
               key={item.type}
               onClick={() => {
                 handleAddWidget(item.type as DashboardWidget['type']);
-                setIsOpen(false);
               }}
               className="p-4 rounded-lg border border-gray-700 hover:border-accent hover:bg-surface/50 transition-all text-left group"
             >

@@ -76,9 +76,9 @@ export function Leaderboard({ period = 'weekly', type = 'global' }: LeaderboardP
   };
 
   return (
-    <div className="h-full w-full bg-surface rounded-lg border border-gray-800 flex flex-col" style={{ backgroundColor: 'var(--color-surface)' }}>
+    <div className="h-full w-full bg-surface rounded-lg border border-gray-800/50 flex flex-col" style={{ backgroundColor: 'var(--color-surface)' }}>
       {/* Header */}
-      <div className="p-4 border-b border-gray-800">
+      <div className="p-4 border-b border-gray-800/50">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <Trophy className="w-5 h-5 text-accent" style={{ color: 'var(--color-accent)' }} />
@@ -219,7 +219,7 @@ export function Leaderboard({ period = 'weekly', type = 'global' }: LeaderboardP
       </div>
 
       {/* Footer */}
-      <div className="p-4 border-t border-gray-800 text-center">
+      <div className="p-4 border-t border-gray-800/50 text-center">
         <p className="text-xs text-text-secondary">
           Rankings update every hour • Your rank: #{mockLeaderboard.find(e => e.userId === '4')?.rank}
         </p>

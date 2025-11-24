@@ -105,9 +105,9 @@ export function BadgeSystem({ user }: { user?: User }) {
   const badges = badgeDefinitions;
 
   return (
-    <div className="h-full w-full bg-surface rounded-lg border border-gray-800 flex flex-col" style={{ backgroundColor: 'var(--color-surface)' }}>
+    <div className="h-full w-full bg-surface rounded-lg border border-gray-800/50 flex flex-col" style={{ backgroundColor: 'var(--color-surface)' }}>
       {/* Header */}
-      <div className="p-4 border-b border-gray-800">
+      <div className="p-4 border-b border-gray-800/50">
         <div className="flex items-center gap-2 mb-2">
           <Trophy className="w-5 h-5 text-accent" style={{ color: 'var(--color-accent)' }} />
           <h2 className="text-lg font-semibold text-text">Achievements</h2>
@@ -190,7 +190,7 @@ export function BadgeSystem({ user }: { user?: User }) {
       </div>
 
       {/* Stats Summary */}
-      <div className="p-4 border-t border-gray-800">
+      <div className="p-4 border-t border-gray-800/50">
         <div className="grid grid-cols-3 gap-4 text-center">
           <div>
             <div className="text-2xl font-bold text-text mb-1">

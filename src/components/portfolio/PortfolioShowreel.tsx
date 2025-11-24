@@ -39,7 +39,7 @@ export function PortfolioShowreel({ portfolio }: PortfolioShowreelProps) {
   };
 
   return (
-    <div className="bg-surface rounded-lg border border-gray-800 p-6" style={{ backgroundColor: 'var(--color-surface)' }}>
+    <div className="bg-surface rounded-lg border border-gray-800/50 p-6" style={{ backgroundColor: 'var(--color-surface)' }}>
       <div className="flex items-center gap-2 mb-4">
         <Sparkles className="w-5 h-5 text-accent" style={{ color: 'var(--color-accent)' }} />
         <h3 className="text-lg font-semibold text-text">Portfolio Showreel</h3>

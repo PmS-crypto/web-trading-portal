@@ -37,7 +37,7 @@ export function TrackkScoreWidget({ config }: TrackkScoreWidgetProps) {
       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
     }}>
       {/* Widget Header */}
-      <div className="flex items-center justify-between p-3 border-b border-gray-800 flex-shrink-0">
+      <div className="flex items-center justify-between p-3 border-b border-gray-800/50 flex-shrink-0">
         <div className="flex items-center gap-2 min-w-0">
           <GripVertical className="w-4 h-4 text-text-secondary widget-drag-handle cursor-move flex-shrink-0" />
           <div className="text-sm font-semibold text-text truncate">Trackk Score</div>
@@ -125,7 +125,7 @@ export function TrackkScoreWidget({ config }: TrackkScoreWidgetProps) {
         </div>
 
         {/* Sources */}
-        <div className="mt-4 pt-4 border-t border-gray-800 w-full">
+        <div className="mt-4 pt-4 border-t border-gray-800/50 w-full">
           <div className="text-xs text-text-secondary mb-2">Key Factors:</div>
           <ul className="space-y-1">
             {sources.map((source, index) => (

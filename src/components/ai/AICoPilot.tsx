@@ -82,7 +82,7 @@ export function AICoPilot() {
       style={{ backgroundColor: 'var(--color-surface)' }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-800">
+      <div className="flex items-center justify-between p-4 border-b border-gray-800/50">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center">
             <Sparkles className="w-5 h-5 text-white" />
@@ -163,7 +163,7 @@ export function AICoPilot() {
       </div>
 
       {/* Input */}
-      <div className="p-4 border-t border-gray-800">
+      <div className="p-4 border-t border-gray-800/50">
         <div className="flex items-center gap-2">
           <input
             type="text"

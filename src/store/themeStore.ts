@@ -6,11 +6,11 @@ const themes: Theme[] = [
     id: 'dark',
     name: 'Dark Mode',
     colors: {
-      bg: '#0a0e1a',
-      surface: '#151b2e',
+      bg: '#0f1419',
+      surface: '#1a1f2e',
       accent: '#3b82f6',
       text: '#ffffff',
-      textSecondary: '#94a3b8',
+      textSecondary: '#b0b8c1',
     },
   },
   {

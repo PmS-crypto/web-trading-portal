@@ -10,7 +10,7 @@ export function TopBar() {
 
   return (
     <header
-      className="h-16 border-b border-gray-800 flex items-center justify-between px-6"
+      className="h-16 border-b border-gray-800/50 flex items-center justify-between px-6"
       style={{ backgroundColor: 'var(--color-surface)', borderColor: 'rgba(255,255,255,0.1)' }}
     >
       {/* Search Bar */}

@@ -38,34 +38,40 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        'relative flex flex-col bg-surface border-r border-gray-800 transition-all duration-300',
+        'relative flex flex-col bg-surface border-r border-gray-800/50 transition-all duration-300',
         isCollapsed ? 'w-16' : 'w-64'
       )}
       style={{ backgroundColor: 'var(--color-surface)' }}
     >
-      {/* Collapse Toggle */}
-      <button
-        onClick={() => setIsCollapsed(!isCollapsed)}
-        className="absolute -right-3 top-8 z-10 w-6 h-6 rounded-full bg-accent flex items-center justify-center hover:bg-accent/80 transition-colors"
-        style={{ backgroundColor: 'var(--color-accent)' }}
-      >
+      {/* Logo Section - Contains logo when expanded, toggle button when collapsed */}
+      <div className="p-4 border-b border-gray-800/50 relative">
         {isCollapsed ? (
-          <ChevronRight className="w-4 h-4 text-white" />
+          // Toggle button in logo position when collapsed
+          <button
+            onClick={() => setIsCollapsed(false)}
+            className="w-full flex items-center justify-center w-8 h-8 rounded-lg bg-accent hover:bg-accent/90 transition-all hover:scale-110 shadow-md"
+            style={{ backgroundColor: 'var(--color-accent)' }}
+            title="Expand sidebar"
+          >
+            <ChevronRight className="w-5 h-5 text-white" />
+          </button>
         ) : (
-          <ChevronLeft className="w-4 h-4 text-white" />
-        )}
-      </button>
-
-      {/* Logo */}
-      <div className="p-4 border-b border-gray-800">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center">
-            <Zap className="w-5 h-5 text-white" />
+          // Logo and toggle button when expanded
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center">
+              <Zap className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-xl font-bold text-text flex-1">Trackk</span>
+            <button
+              onClick={() => setIsCollapsed(true)}
+              className="w-6 h-6 rounded-full bg-accent/20 hover:bg-accent/30 flex items-center justify-center transition-colors"
+              style={{ color: 'var(--color-accent)' }}
+              title="Collapse sidebar"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
           </div>
-          {!isCollapsed && (
-            <span className="text-xl font-bold text-white">Trackk</span>
-          )}
-        </div>
+        )}
       </div>
 
       {/* Navigation */}
@@ -128,7 +134,7 @@ export function Sidebar() {
       </nav>
 
       {/* User Profile */}
-      <div className="p-4 border-t border-gray-800">
+      <div className="p-4 border-t border-gray-800/50">
         <div className={cn('flex items-center gap-3', isCollapsed && 'justify-center')}>
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-semibold text-sm">
             U

@@ -15,7 +15,7 @@ interface StreakCounterProps {
 
 export function StreakCounter({ streaks }: StreakCounterProps) {
   return (
-    <div className="bg-surface rounded-lg border border-gray-800 p-4" style={{ backgroundColor: 'var(--color-surface)' }}>
+    <div className="bg-surface rounded-lg border border-gray-800/50 p-4" style={{ backgroundColor: 'var(--color-surface)' }}>
       <div className="flex items-center gap-2 mb-4">
         <Flame className="w-5 h-5 text-warning" />
         <h3 className="text-sm font-semibold text-text">Your Streaks</h3>
@@ -78,7 +78,7 @@ export function StreakCounter({ streaks }: StreakCounterProps) {
       </div>
 
       {/* Best Streak */}
-      <div className="mt-4 pt-4 border-t border-gray-800">
+      <div className="mt-4 pt-4 border-t border-gray-800/50">
         <div className="flex items-center justify-between">
           <span className="text-sm text-text-secondary">Best Streak</span>
           <span className="text-lg font-bold text-text flex items-center gap-1">
