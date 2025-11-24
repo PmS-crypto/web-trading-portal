@@ -51,43 +51,91 @@ export function TopBar() {
           <button
             className="p-2 rounded-lg hover:bg-white/5 transition-colors"
             title="Toggle theme"
+            style={{ color: 'var(--color-text-secondary)' }}
           >
             {currentTheme.id === 'dark' ? (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-text-secondary)' }}>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
               </svg>
             ) : (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-text-secondary)' }}>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5" />
+                <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth={1.5} fill="none" opacity="0.8" />
               </svg>
             )}
           </button>
-          <div className="absolute right-0 top-full mt-2 w-40 bg-surface border border-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+          <div className="absolute right-0 top-full mt-2 w-40 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50" style={{
+            backgroundColor: 'var(--color-surface)',
+            border: '1px solid rgba(255,255,255,0.1)'
+          }}>
             <div className="p-2">
-              {themes.map((theme) => (
-                <button
-                  key={theme.id}
-                  onClick={() => setTheme(theme.id)}
-                  className={`
-                    w-full text-left px-3 py-2 rounded text-sm transition-colors flex items-center gap-2
-                    ${currentTheme.id === theme.id
-                      ? 'bg-accent/20 text-accent'
-                      : 'text-text-secondary hover:bg-surface/50 hover:text-text'
-                    }
-                  `}
-                >
-                  {theme.id === 'dark' ? (
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                    </svg>
-                  ) : (
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                  )}
-                  {theme.name}
-                </button>
-              ))}
+              {themes.map((theme) => {
+                const isSelected = currentTheme.id === theme.id;
+                const isDark = theme.id === 'dark';
+                
+                return (
+                  <button
+                    key={theme.id}
+                    onClick={() => setTheme(theme.id)}
+                    className="w-full text-left px-3 py-2 rounded text-sm transition-all flex items-center gap-2"
+                    style={{
+                      backgroundColor: isSelected 
+                        ? (isDark ? 'rgba(0, 82, 255, 0.3)' : 'rgba(37, 99, 235, 0.15)')
+                        : 'transparent',
+                      color: isSelected 
+                        ? (isDark ? '#ffffff' : 'var(--color-accent)')
+                        : 'var(--color-text-secondary)',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isSelected) {
+                        e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
+                        e.currentTarget.style.color = 'var(--color-text)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isSelected) {
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                        e.currentTarget.style.color = 'var(--color-text-secondary)';
+                      }
+                    }}
+                  >
+                    {isDark ? (
+                      <svg 
+                        className="w-4 h-4" 
+                        viewBox="0 0 24 24" 
+                        fill={isSelected ? "currentColor" : "none"}
+                        stroke="currentColor"
+                        strokeWidth={isSelected ? 0 : 2}
+                      >
+                        <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                      </svg>
+                    ) : (
+                      <svg 
+                        className="w-4 h-4" 
+                        viewBox="0 0 24 24" 
+                        fill={isSelected ? "currentColor" : "none"}
+                        stroke="currentColor"
+                        strokeWidth={isSelected ? 0 : 2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        {isSelected ? (
+                          <>
+                            <circle cx="12" cy="12" r="5" fill="currentColor" />
+                            <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth={1.5} fill="none" opacity="0.8" />
+                          </>
+                        ) : (
+                          <>
+                            <circle cx="12" cy="12" r="4" />
+                            <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+                          </>
+                        )}
+                      </svg>
+                    )}
+                    {theme.name}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
